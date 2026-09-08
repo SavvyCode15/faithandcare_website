@@ -7,12 +7,37 @@ document.addEventListener('DOMContentLoaded', function () {
       var isOpen = header.classList.toggle('nav-open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
-    // close menu when a nav link is clicked (mobile)
     header.querySelectorAll('.main-nav a').forEach(function (link) {
       link.addEventListener('click', function () {
         header.classList.remove('nav-open');
         toggle.setAttribute('aria-expanded', 'false');
       });
+    });
+  }
+
+  // Hours dropdown — click toggle on mobile, hover handled by CSS on desktop
+  var hoursWrap = document.getElementById('hours-drop');
+  var hoursTrigger = hoursWrap && hoursWrap.querySelector('.hours-trigger');
+  if (hoursWrap && hoursTrigger) {
+    // Highlight today's row
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var today = days[new Date().getDay()];
+    hoursWrap.querySelectorAll('.hours-panel td:first-child').forEach(function(td) {
+      if (td.textContent.trim() === today) {
+        td.parentElement.classList.add('today-row');
+      }
+    });
+    // Click toggle for mobile
+    hoursTrigger.addEventListener('click', function () {
+      var isOpen = hoursWrap.classList.toggle('is-open');
+      hoursTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!hoursWrap.contains(e.target)) {
+        hoursWrap.classList.remove('is-open');
+        hoursTrigger.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 

@@ -17,10 +17,24 @@
       095825 53238
     </a>
     <div class="topbar-right">
-      <span class="topbar-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Mon–Sat, 9:00 AM – 8:00 PM
-      </span>
+      <div class="hours-dropdown-wrap" id="hours-drop">
+        <button class="hours-trigger" aria-expanded="false" aria-haspopup="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Mon–Sat 9am–9pm &middot; Sun 10am–1pm
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="hours-panel" role="tooltip">
+          <table>
+            <tr><td>Monday</td><td>9:00 AM – 9:00 PM</td></tr>
+            <tr><td>Tuesday</td><td>9:00 AM – 9:00 PM</td></tr>
+            <tr><td>Wednesday</td><td>9:00 AM – 9:00 PM</td></tr>
+            <tr><td>Thursday</td><td>9:00 AM – 9:00 PM</td></tr>
+            <tr><td>Friday</td><td>9:00 AM – 9:00 PM</td></tr>
+            <tr><td>Saturday</td><td>9:00 AM – 9:00 PM</td></tr>
+            <tr><td>Sunday</td><td>10:00 AM – 1:00 PM</td></tr>
+          </table>
+        </div>
+      </div>
       <span class="topbar-item">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Rajouri Garden, New Delhi

@@ -1,21 +1,20 @@
 /* =========================================================
    Faith & Care Physiotherapy Clinic — Design System
-   Palette: pine (trust/healing), paper/mist (calm neutral),
+   Palette: blue (trust/medical), paper/mist (calm neutral),
    gold (warmth, restored movement)
    Type: Fraunces (display) + Inter (body/UI)
-   Motif: the range-of-motion arc — recurring visual device
    ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root{
-  --ink: #17271f;
-  --ink-soft: #53625b;
-  --pine: #176b58;
-  --pine-dark: #0a382f;
-  --paper: #f8f8f3;
-  --mist: #e9f2ed;
-  --line: rgba(23,39,31,0.12);
+  --ink: #0f1f3d;
+  --ink-soft: #4a5568;
+  --pine: #264BA4;
+  --pine-dark: #162d6b;
+  --paper: #f5f7fc;
+  --mist: #eef2fb;
+  --line: rgba(22,45,107,0.12);
   --gold: #d59e43;
   --gold-light: #f3d18b;
   --white: #FFFFFF;
@@ -25,7 +24,7 @@
 
   --container: 1160px;
   --radius: 14px;
-  --shadow: 0 24px 60px -30px rgba(10,56,47,0.42);
+  --shadow: 0 24px 60px -30px rgba(22,45,107,0.38);
 }
 
 *, *::before, *::after{ box-sizing: border-box; }
@@ -43,7 +42,7 @@ body{
   font-family: var(--sans);
   color: var(--ink);
   background: var(--paper);
-  background-image: radial-gradient(circle at 8% 8%, rgba(213,158,67,.10), transparent 24rem), radial-gradient(circle at 90% 34%, rgba(23,107,88,.07), transparent 27rem);
+  background-image: radial-gradient(circle at 8% 8%, rgba(213,158,67,.08), transparent 24rem), radial-gradient(circle at 90% 34%, rgba(38,75,164,.06), transparent 27rem);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -121,8 +120,8 @@ h2.section-title{
   white-space: nowrap;
 }
 .btn:hover{ transform: translateY(-3px); }
-.btn-primary{ background: var(--pine); color: var(--white); box-shadow: 0 12px 20px -12px rgba(10,56,47,.8); }
-.btn-primary:hover{ background: var(--pine-dark); box-shadow: 0 18px 28px -14px rgba(10,56,47,.72); }
+.btn-primary{ background: var(--pine); color: var(--white); box-shadow: 0 12px 20px -12px rgba(22,45,107,.5); }
+.btn-primary:hover{ background: var(--pine-dark); box-shadow: 0 18px 28px -14px rgba(22,45,107,.6); }
 .btn-gold{ background: var(--gold); color: var(--white); }
 .btn-gold:hover{ background: #9c6f2e; }
 .btn-ghost{ background: transparent; color: var(--ink); border-color: var(--line); }
@@ -151,6 +150,50 @@ h2.section-title{
 .topbar-item{ display: inline-flex; align-items: center; gap: 6px; }
 .topbar-right{ display: flex; gap: 20px; flex-wrap: wrap; }
 
+/* Hours dropdown in topbar */
+.hours-dropdown-wrap{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.hours-trigger{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.85);
+  font-size: 13.5px;
+  font-family: var(--sans);
+  padding: 0;
+}
+.hours-trigger svg{ width: 14px; height: 14px; flex-shrink: 0; }
+.hours-trigger .chevron{ width: 12px; height: 12px; transition: transform .2s ease; }
+.hours-dropdown-wrap:hover .chevron,
+.hours-dropdown-wrap.is-open .chevron{ transform: rotate(180deg); }
+.hours-panel{
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--pine-dark);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  min-width: 220px;
+  z-index: 100;
+  box-shadow: 0 16px 40px -12px rgba(0,0,0,0.5);
+}
+.hours-dropdown-wrap:hover .hours-panel,
+.hours-dropdown-wrap.is-open .hours-panel{ display: block; }
+.hours-panel table{ width: 100%; border-collapse: collapse; }
+.hours-panel td{ padding: 6px 0; font-size: 13px; color: rgba(255,255,255,0.82); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.hours-panel tr:last-child td{ border-bottom: none; }
+.hours-panel td:last-child{ text-align: right; color: var(--gold-light); }
+.hours-panel .today-row td{ color: var(--white); font-weight: 600; }
+.hours-panel .today-row td:last-child{ color: var(--gold); }
+
 .site-header{
   position: sticky;
   top: 0;
@@ -178,7 +221,7 @@ h2.section-title{
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  box-shadow: 0 5px 12px -8px rgba(10,56,47,.5);
+  box-shadow: 0 5px 12px -8px rgba(22,45,107,.4);
 }
 .brand-text{
   font-family: var(--serif);
@@ -249,7 +292,7 @@ h2.section-title{
   gap: 56px;
   align-items: center;
 }
-.hero::before{content:""; position:absolute; width:620px; height:620px; right:-210px; top:-230px; border:1px solid rgba(213,158,67,.25); border-radius:50%; box-shadow:0 0 0 52px rgba(213,158,67,.045),0 0 0 105px rgba(23,107,88,.03); pointer-events:none;}
+.hero::before{content:""; position:absolute; width:620px; height:620px; right:-210px; top:-230px; border:1px solid rgba(213,158,67,.2); border-radius:50%; box-shadow:0 0 0 52px rgba(38,75,164,.04),0 0 0 105px rgba(38,75,164,.02); pointer-events:none;}
 .hero-trust{
   display: inline-flex;
   align-items: center;
@@ -258,7 +301,7 @@ h2.section-title{
   border: 1px solid var(--line);
   padding: 8px 14px 8px 10px;
   border-radius: 999px;
-  box-shadow: 0 10px 30px -22px rgba(10,56,47,.5);
+  box-shadow: 0 10px 30px -22px rgba(22,45,107,.4);
   font-size: 13.5px;
   font-weight: 600;
   color: var(--ink-soft);
@@ -313,7 +356,7 @@ h2.section-title{
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 46%, rgba(10,56,47,.30));
+  background: linear-gradient(180deg, transparent 46%, rgba(22,45,107,.28));
   pointer-events: none;
   z-index: 1;
 }
@@ -447,6 +490,13 @@ h2.section-title{
   .conditions-tags{ gap: 10px; }
   .condition-tag{ font-size: 13px; padding: 9px 16px; }
   .conditions-cta{ padding: 28px 22px; }
+  /* On mobile, hours dropdown only opens on click (JS), not hover */
+  .hours-dropdown-wrap:hover .hours-panel{ display: none; }
+  .hours-dropdown-wrap.is-open .hours-panel{ display: block; }
+  .hours-panel{ right: auto; left: 0; min-width: 200px; }
+  /* Hide location text on very small screens to save space */
+  .topbar-right .topbar-item{ display: none; }
+  .topbar .container{ flex-wrap: nowrap; }
 }
 
 /* ---------- Cards / grids ---------- */
@@ -463,10 +513,10 @@ h2.section-title{
   border: 1px solid var(--line);
   padding: 34px 30px;
   border-radius: var(--radius);
-  box-shadow: 0 12px 22px -22px rgba(10,56,47,.34);
+  box-shadow: 0 12px 22px -22px rgba(22,45,107,.2);
   transition: border-color .2s ease, transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease;
 }
-.service-card:hover{ border-color: rgba(23,107,88,.45); transform: translateY(-8px); box-shadow: 0 24px 40px -28px rgba(10,56,47,.45); }
+.service-card:hover{ border-color: rgba(38,75,164,.4); transform: translateY(-8px); box-shadow: 0 24px 40px -28px rgba(22,45,107,.35); }
 .service-icon{
   width: 46px; height: 46px;
   color: var(--pine);
@@ -532,7 +582,7 @@ h2.section-title{
   border: 1px solid var(--line);
   padding: 30px;
   border-radius: var(--radius);
-  box-shadow: 0 12px 22px -22px rgba(10,56,47,.34);
+  box-shadow: 0 12px 22px -22px rgba(22,45,107,.2);
   height: 100%;
 }
 .testi-stars{ color: var(--gold); letter-spacing: 2px; margin-bottom: 16px; font-size: 15px; }
@@ -558,7 +608,7 @@ h2.section-title{
   position:relative;
   overflow:hidden;
 }
-.cta-band::after{content:""; position:absolute; width:420px; height:420px; border:1px solid rgba(243,209,139,.24); border-radius:50%; right:-80px; top:-250px;}
+.cta-band::after{content:""; position:absolute; width:420px; height:420px; border:1px solid rgba(243,209,139,.2); border-radius:50%; right:-80px; top:-250px;}
 .cta-band .container{position:relative; z-index:1;}
 .cta-band .container{
   display: flex;
@@ -609,7 +659,7 @@ h2.section-title{
 /* ---------- Page hero (inner pages) ---------- */
 .page-hero{
   padding: 56px 0 64px;
-  background: linear-gradient(135deg, var(--mist), #f6f5ed);
+  background: linear-gradient(135deg, var(--mist), #edf1fa);
   border-bottom: 1px solid var(--line);
 }
 .page-hero .crumb{ font-size: 13.5px; color: var(--ink-soft); margin-bottom: 16px; }
@@ -636,7 +686,7 @@ h2.section-title{
 }
 .credential-card .note{ font-size: 13.5px; color: var(--ink-soft); font-style: italic; }
 
-.clinic-photo{ position:relative; overflow:hidden; margin-top:30px; border-radius:var(--radius); box-shadow:var(--shadow); width: 100%; aspect-ratio: 16 / 10; min-height: 200px; max-height: 400px; background: var(--mist); }
+.clinic-photo{ position:relative; overflow:hidden; margin-top:30px; border-radius:var(--radius); box-shadow:0 24px 60px -30px rgba(22,45,107,.32); width: 100%; aspect-ratio: 16 / 10; min-height: 200px; max-height: 400px; background: var(--mist); }
 .clinic-photo img{
   position: absolute;
   inset: 0;
@@ -657,7 +707,7 @@ h2.section-title{
   aspect-ratio: 1 / 1;
   border-radius: 18px 80px 18px 18px;
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: 0 24px 60px -30px rgba(22,45,107,.32);
   background: var(--mist);
 }
 .session-feature img{
@@ -797,7 +847,7 @@ h2.section-title{
 
 /* ---------- Conditions section ---------- */
 .section--conditions{
-  background: linear-gradient(160deg, #061f1a 0%, var(--pine-dark) 42%, #0d3d34 100%);
+  background: linear-gradient(160deg, #0a1a3d 0%, var(--pine-dark) 42%, #1a2f6e 100%);
   color: rgba(255,255,255,0.88);
   position: relative;
   overflow: hidden;
@@ -898,13 +948,13 @@ h2.section-title{
   font-size: 15.5px;
 }
 .btn-teal{
-  background: linear-gradient(135deg, #1a8a72, var(--pine));
+  background: linear-gradient(135deg, #3a63c4, var(--pine));
   color: var(--white);
-  box-shadow: 0 12px 28px -12px rgba(0,0,0,0.45);
+  box-shadow: 0 12px 28px -12px rgba(0,0,0,0.35);
 }
 .btn-teal:hover{
-  background: linear-gradient(135deg, #157a65, var(--pine-dark));
-  box-shadow: 0 16px 32px -12px rgba(0,0,0,0.5);
+  background: linear-gradient(135deg, #2a50a8, var(--pine-dark));
+  box-shadow: 0 16px 32px -12px rgba(0,0,0,0.45);
 }
 
 /* ---------- Real Results section ---------- */
@@ -950,10 +1000,10 @@ h2.section-title{
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 32px 28px;
-  box-shadow: 0 8px 24px -16px rgba(10,56,47,.2);
+  box-shadow: 0 8px 24px -16px rgba(22,45,107,.15);
   transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease;
 }
-.result-card:hover{ transform: translateY(-6px); box-shadow: 0 20px 40px -20px rgba(10,56,47,.3); }
+.result-card:hover{ transform: translateY(-6px); box-shadow: 0 20px 40px -20px rgba(22,45,107,.28); }
 .result-card-stars{ color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
 .result-card-quote{
   font-size: 16px;
