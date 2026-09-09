@@ -745,7 +745,115 @@ h2.section-title{
 .treatment-spotlight .kicker{ margin-bottom:7px; }
 @media (max-width:600px){ .treatment-spotlight{ grid-template-columns:1fr; gap:18px; padding:18px; } }
 
-/* ---------- Services detail page ---------- */
+/* ---------- Doctor profile (about page) ---------- */
+.doctor-profile{
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 52px;
+  align-items: start;
+  margin-bottom: 72px;
+}
+.doctor-photo-wrap{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px 80px 20px 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -20px rgba(22,45,107,.35);
+  background: var(--mist);
+  flex-shrink: 0;
+}
+.doctor-photo-wrap img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.doctor-info h3{
+  font-size: clamp(26px, 3vw, 34px);
+  color: var(--pine-dark);
+  margin-bottom: 6px;
+}
+.doctor-title{
+  font-weight: 600;
+  color: var(--pine);
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+.doctor-creds{
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin: 0 0 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.doctor-info p{
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  margin: 0 0 14px;
+}
+.doctor-badges{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+@media (max-width: 900px){
+  .doctor-profile{
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .doctor-photo-wrap{
+    aspect-ratio: 3 / 2;
+    max-height: 320px;
+    border-radius: 16px 56px 16px 16px;
+  }
+  .doctor-photo-wrap img{ object-position: center 20%; }
+}
+
+/* Clinic brief (about page) */
+.clinic-brief{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
+  padding-top: 52px;
+  border-top: 1px solid var(--line);
+}
+.clinic-brief-text .kicker{ margin-bottom: 10px; }
+.clinic-brief-text h3{ font-size: clamp(22px, 2.8vw, 30px); color: var(--pine-dark); margin-bottom: 16px; }
+.clinic-brief-text p{ color: var(--ink-soft); font-size: 15.5px; margin: 0 0 14px; }
+@media (max-width: 900px){
+  .clinic-brief{ grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* ---------- Service photos ---------- */
+.service-photo-wrap{
+  margin-top: 20px;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  background: var(--mist);
+  box-shadow: 0 12px 32px -16px rgba(22,45,107,.22);
+}
+.service-photo-wrap img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--mist);
+}
+@media (max-width: 600px){
+  .service-photo-wrap{ max-width: 100%; aspect-ratio: 3 / 4; }
+}
 .service-detail{
   display: grid;
   grid-template-columns: 60px 1fr;
@@ -833,7 +941,9 @@ h2.section-title{
 .field-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 @media (max-width: 560px){ .field-row{ grid-template-columns: 1fr; } }
 
-.form-note{ font-size: 13px; color: var(--ink-soft); margin-top: 14px; }
+@media (max-width: 600px){
+  .contact-photo-map{ grid-template-columns: 1fr !important; }
+}
 .form-success{
   display: none;
   background: var(--mist);
@@ -957,7 +1067,44 @@ h2.section-title{
   box-shadow: 0 16px 32px -12px rgba(0,0,0,0.45);
 }
 
-/* ---------- Real Results section ---------- */
+/* ---------- Reviews slider ---------- */
+.reviews-slider{ position: relative; overflow: hidden; }
+.reviews-track{
+  display: flex;
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+}
+.reviews-slide{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  min-width: 100%;
+}
+@media (max-width: 900px){
+  .reviews-slide{ grid-template-columns: 1fr; }
+}
+@media (max-width: 600px){
+  .reviews-slide{ grid-template-columns: 1fr; }
+}
+.reviews-dots{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+.reviews-dot{
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: var(--line);
+  cursor: pointer;
+  padding: 0;
+  transition: background .2s ease, transform .2s ease;
+}
+.reviews-dot.is-active{
+  background: var(--pine);
+  transform: scale(1.3);
+}
 .section--results{
   background: var(--paper);
 }

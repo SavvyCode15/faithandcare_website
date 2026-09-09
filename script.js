@@ -82,7 +82,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Gentle on-scroll reveals for cards and content blocks.
+  // Reviews auto-slider
+  var track = document.getElementById('reviews-track');
+  var dots = document.querySelectorAll('.reviews-dot');
+  if (track && dots.length) {
+    var current = 0;
+    var total = dots.length;
+    var timer;
+
+    function goTo(idx) {
+      current = idx;
+      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      dots.forEach(function(d, i) {
+        d.classList.toggle('is-active', i === idx);
+      });
+    }
+
+    function next() { goTo((current + 1) % total); }
+
+    function startTimer() { timer = setInterval(next, 5000); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+
+    dots.forEach(function(dot, i) {
+      dot.addEventListener('click', function() { goTo(i); resetTimer(); });
+    });
+
+    // Pause on hover
+    track.addEventListener('mouseenter', function() { clearInterval(timer); });
+    track.addEventListener('mouseleave', startTimer);
+
+    startTimer();
+  }
   var motionTargets = document.querySelectorAll('.service-card, .testi-card, .result-card, .process-step, .value-item, .service-detail, .info-row, .credential-card, .condition-tag, .conditions-cta, .clinic-photo, .hero-photo, .feature-media, .spotlight-media');
   motionTargets.forEach(function (element) { element.classList.add('animate-in'); });
   if ('IntersectionObserver' in window) {
